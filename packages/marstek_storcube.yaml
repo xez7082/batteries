@@ -1,1 +1,19 @@
+# Regroupement des entités Marstek Venus E et Storcube
+template:
+  - sensor:
+      - name: "Capacité Totale Maison"
+        unit_of_measurement: "kWh"
+        state: >
+          {{ (states('sensor.marstek_venus_e_energy') | float + 
+              states('sensor.storcube_total_energy') | float) | round(2) }}
 
+automation:
+  - alias: "Protection Décharge Profonde"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.marstek_venus_e_soc
+        below: 10
+    action:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.output_batteries
