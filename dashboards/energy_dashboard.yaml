@@ -1,1 +1,20 @@
-
+type: picture-elements
+image: /local/votre_image_batteries.png # L'image sans texte ni fond
+elements:
+  # Niveau Marstek (Ondulant)
+  - type: custom:bar-card
+    entity: sensor.marstek_venus_e_soc
+    style:
+      top: 50%
+      left: 25%
+      width: 20%
+    positions:
+      icon: "off"
+      name: "off"
+  # Niveau Storcube (Ondulant)
+  - type: custom:bar-card
+    entity: sensor.storcube_soc
+    style:
+      top: 50%
+      left: 75%
+      width: 20%
